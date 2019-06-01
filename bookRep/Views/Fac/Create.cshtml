@@ -1,0 +1,124 @@
+﻿@model bookRep.Models.ModelFaculity
+
+@{
+    Layout = "";
+}
+@using (Ajax.BeginForm("Create", new AjaxOptions()
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "bodyContent"
+}))
+{
+    <div class="col-md-9">
+        <div class="panel panel-info" id="p5" data-panel-color="panel-info" data-panel-fullscreen="false" data-panel-title="false" data-panel-remove="false" data-panel-collapse="false">
+            <div class="panel-heading ui-sortable-handle">
+                <span class="panel-title">Add New Faculty</span>
+
+            </div>
+
+            <div class="panel-body ">
+                <div class="gallery animation-fadeIn">
+                    <div class="register-box">
+
+                        <div class="register-box-body">
+                            @if (ViewBag.Message != null)
+                            {
+                                <div class="alert alert-info light alert-dismissable" id="alert-demo-1" style="display: block;">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <i class="fa fa-info pr10"></i>
+                                    <strong></strong>
+                                    <a href="#" class="alert-link">@ViewBag.Message</a>
+                                </div>
+                            }
+
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                                <div class="form-group has-feedback">
+                                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "First Name" } })
+                                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="form-group has-feedback">
+                                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Last Name" } })
+                                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            @Html.DropDownListFor(model => model.DesignationId, (IEnumerable<SelectListItem>)ViewBag.Designation, null, new { @class = "form-control", PlaceHolder = "Last Name" })
+
+                                            @Html.ValidationMessageFor(model => model.DesignationId, "", new { @class = "text-danger" })
+
+                                        </div>
+                                      
+                                        <div class="col-md-4">
+                                            @Html.DropDownListFor(model => model.School, (IEnumerable<SelectListItem>)ViewBag.School, null, new { @class = "form-control", PlaceHolder = "Last Name" })
+
+                                            @Html.ValidationMessageFor(model => model.School, "", new { @class = "text-danger" })
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.DropDownListFor(model => model.Department, (IEnumerable<SelectListItem>)ViewBag.Department, null, new { @class = "form-control", PlaceHolder = "Last Name" })
+
+                                            @Html.ValidationMessageFor(model => model.Department, "", new { @class = "text-danger" })
+
+                                        </div>
+                                    </div>
+                                  
+                                </div>
+                                <div class="form-group has-feedback">
+                                    @Html.EditorFor(model => model.Email_Address, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Email Address" } })
+                                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                                    @Html.ValidationMessageFor(model => model.Email_Address, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group has-feedback">
+                                    @Html.PasswordFor(model => model.Pasword, new { @class = "form-control", PlaceHolder = "Password" })
+                                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                    @Html.ValidationMessageFor(model => model.Pasword, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group has-feedback">
+                                    @Html.PasswordFor(model => model.ConformPassword, new { @class = "form-control", PlaceHolder = "Conform Password" })
+                                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                    @Html.ValidationMessageFor(model => model.ConformPassword, "", new { @class = "text-danger" })
+                                </div>
+                               
+                                <div class="row">
+                                    <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+                                </div>
+                                <hr />
+                                
+
+                            </div>
+
+                        </div>
+                        <!-- /.form-box -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script>
+    //$(function () {
+    //    $('input').iCheck({
+    //        checkboxClass: 'icheckbox_square-blue',
+    //        radioClass: 'iradio_square-blue',
+    //        increaseArea: '20%' /* optional */
+    //    });
+    //});
+</script>
+

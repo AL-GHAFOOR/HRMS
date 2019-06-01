@@ -1,0 +1,307 @@
+﻿@model bookRep.Models.ModelBook
+
+@{
+    ViewBag.Title = "New Book Upload";
+    Layout = "";
+}
+<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<div class="col-md-9">
+    <div class="panel panel-info" id="p5" data-panel-color="panel-info" data-panel-fullscreen="false" data-panel-title="false" data-panel-remove="false" data-panel-collapse="false">
+        <div class="panel-heading ui-sortable-handle">
+            <span class="panel-title">Edit New Book</span>
+
+        </div>
+
+        <div class="panel-body ">
+            <div class="gallery animation-fadeIn">
+                @using (Ajax.BeginForm("Create", "_ebook", new { postOwnerUser = User.Identity.Name }, new AjaxOptions()
+                {
+                    HttpMethod = "POST",
+                    InsertionMode = InsertionMode.Replace,
+                    UpdateTargetId = "GeneralSection",
+
+                }, new { enctype = "multipart/form-data", id = "createBook" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.Id)
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Book_Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Book_Title, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Book_Title, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.EditionId, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.EditionId, (IEnumerable<SelectListItem>)ViewBag.EditionList, new { @class = "form-control" })
+
+                                @Html.ValidationMessageFor(model => model.EditionId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ProgramId, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.ProgramId, (IEnumerable<SelectListItem>)ViewBag.Program, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ProgramId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SubjectArea_CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.SubjectArea_CategoryId, (IEnumerable<SelectListItem>)ViewBag.SubjectArea, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.SubjectArea_CategoryId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Author, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Author, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Author, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Published, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-1">
+                                @Html.EditorFor(model => model.Published, new { htmlAttributes = new { @class = "form-control" } })
+                            
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                        </div>
+
+                        @*<div id="FileBrowse">
+                            <label class="control-label col-md-2">File Upload</label>
+                            <div class="col-md-10">
+                                <input type="file" id="BookdocumBase" multiple="multiple" name="BookdocumBase" class="form-control" />
+                            </div>
+                            <div class="col-md-10">
+                                <label class="control-label col-md-2"></label>
+                                <p>
+                                    <strong>        N.B : <span class="text-danger">Please select cover photo with pdf document</span></strong>
+                                </p>
+                            </div>
+
+                        </div>*@
+                        @*<div class="row">
+                            <div class="col-sm-4">
+                                <div id="progressbar-5">
+                                    <div class="progress-label">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                        @*<div class="row">
+                            <div class="col-sm-4">
+                                <div id="progressbar-5">
+                                    <div class="progress-label">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                @*<input type="button" id="UploadBtn" value="Create" class="btn btn-default" />*@
+                                <input type="button" id="UploadBtn" onclick="SubmitButtonOnclick();" class="btn btn-danger" value="Upload" />
+                                @*<div class="progress mt10 ">
+                                    <div class="progress-bar progress-bar-primary " id="bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">0%</div>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+
+
+                }
+
+                @*@using (Html.BeginForm("Create", "_ebook", FormMethod.Post, new {id = "createBook", enctype = "multipart/form-data"}))
+                    {
+
+                    }*@
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function SubmitButtonOnclick() {
+        if ($('#createBook').valid()) {
+            var progressbar = $("#progressbar-5");
+            var progressLabel = $(".progress-label");
+            progressbar.show();
+            var width = 0;
+            var elem = document.getElementById("bar");
+            var formData = new FormData();
+
+            var bookdata = document.getElementById("BookdocumBase").files;
+
+            var id = document.getElementById("Id").value;
+            var EditionId = document.getElementById("EditionId").value;
+            var Book_Title = document.getElementById("Book_Title").value;
+            var ProgramId = document.getElementById("ProgramId").value;
+            var CategoryId = document.getElementById("SubjectArea_CategoryId").value;
+            var Author = document.getElementById("Author").value;
+            var Description = document.getElementById("Description").value;
+            for (var i = 0; i < bookdata.length; i++) {
+                formData.append("BookdocumBase", bookdata[i]);
+            }
+
+            //formData.append("coverfile", coverfile);
+
+            formData.append("id", id);
+            formData.append("Book_Title", Book_Title);
+            formData.append("EditionId", EditionId);
+            formData.append("ProgramId", ProgramId);
+            formData.append("SubjectArea_CategoryId", CategoryId);
+            formData.append("Author", Author);
+            formData.append("Description", Description);
+            var xhr = new XMLHttpRequest();
+            xhr.upload.addEventListener('progress', onprogressHandler, false);
+            xhr.open('POST', '/_ebook/UploadData', true);
+            xhr.addEventListener("load", function (e) {
+                // file upload is complete
+                alert(xhr.responseText);
+            });
+            function onprogressHandler(evt) {
+                var percent = evt.loaded / evt.total * 100;
+                elem.style.width = percent + '%';
+                elem.aria_valuenow = percent + '%';
+                elem.innerHTML = percent * 1 + '%';
+
+            }
+            xhr.send(formData); // Simple!
+        }
+
+
+        //xhr.upload.onprogress = function(e)
+        //{
+
+        //    var percentComplete = Math.ceil((e.loaded / e.total) * 100);
+        //    elem.style.width = percentComplete + '%';
+        //    elem.aria_valuenow = percentComplete + '%';
+        //    elem.innerHTML = percentComplete * 1 + '%';
+
+        //};
+        // xhr.send(formData);
+
+
+
+    }
+    function UploadComplete(evt) {
+        try {
+            if (evt.target.status == 200)
+                alert("Logo uploaded successfully.");
+
+            else
+                alert(evt.error);
+        } catch (e) {
+            alert(evt.error);
+        }
+
+    }
+
+    function UploadFailed(evt) {
+        alert("There was an error attempting to upload the file.");
+
+    }
+
+    function upload() {
+
+        var fileUpload = $("#BookdocumBase").get(0);
+        var files = fileUpload.files;
+
+        // Create FormData object
+
+        var _data = $('#createBook').serialize();
+        if ($('#createBook').valid()) {
+            var fileData = new FormData();
+            for (var i = 0; i < files.length; i++) {
+                fileData.append(files[i].name, files[i]);
+            }
+            $.ajax({
+                cache: false,
+                url: '/_ebook/UploadData',
+                type: "POST",
+                // Not to set any content header
+                //processData: false,
+                //contentType: true,// Not to process data
+                data: _data,
+                async: false,
+                success: function (result) {
+                    if (result != "") {
+                        LoadProgressBar(result); //calling LoadProgressBar function to load the progress bar.
+                    }
+                },
+                error: function (err) {
+                    alert(err.statusText);
+                }
+            });
+            function LoadProgressBar(result) {
+                var progressbar = $("#progressbar-5");
+                var progressLabel = $(".progress-label");
+                progressbar.show();
+                $("#progressbar-5").progressbar({
+                    //value: false,
+                    change: function () {
+                        progressLabel.text(
+                            progressbar.progressbar("value") + "%");  // Showing the progress increment value in progress bar
+                    },
+                    complete: function () {
+                        progressLabel.text("Loading Completed!");
+                        progressbar.progressbar("value", 0);  //Reinitialize the progress bar value 0
+                        progressLabel.text("");
+                        //progressbar.hide(); //Hiding the progress bar
+                        var data = $('#createBook').serialize();
+                        try {
+                            $.ajax({
+                                cache: false,
+                                type: "POST",
+                                url: '/_ebook/Create',
+                                data: data,
+                                success: function (data) {
+                                    alert(data);
+
+                                },
+                                complete: function (jqXHR, textStatus) {
+                                    //window.setTimeout(function () {window.location.href = "/UserAccount/Account";
+                                    //}, 3000);
+                                }
+                            });
+
+                        } catch (e) {
+                            alert(e);
+                        }
+
+                    }
+                });
+                function progress() {
+                    var val = progressbar.progressbar("value") || 0;
+                    progressbar.progressbar("value", val + 1);
+                    if (val < 99) {
+                        setTimeout(progress, 25);
+                    }
+                }
+                setTimeout(progress, 100);
+            }
+        }
+        // Looping over all files and add it to FormData object
+
+    };
+
+</script>

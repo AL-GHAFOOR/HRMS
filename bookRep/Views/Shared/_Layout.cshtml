@@ -1,0 +1,140 @@
+﻿@using ServiceReportingSystem.Models
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+
+    <title>EDU Online Support System</title>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
+
+    <!-- Icons -->
+    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+    <link rel="shortcut icon" href="~/FreshUI/img/favicon.ico">
+    <link rel="apple-touch-icon" href="~/FreshUI/img/icon57.png" sizes="57x57">
+    <link rel="apple-touch-icon" href="~/FreshUI/img/icon72.png" sizes="72x72">
+    <link rel="apple-touch-icon" href="~/FreshUI/img/icon76.png" sizes="76x76">
+    <link rel="apple-touch-icon" href="~/FreshUI/img/icon114.png" sizes="114x114">
+    <link rel="apple-touch-icon" href="~/FreshUI/img/icon120.png" sizes="120x120">
+    <link rel="apple-touch-icon" href="~/FreshUI/img/icon144.png" sizes="144x144">
+    <link rel="apple-touch-icon" href="~/FreshUI/img/icon152.png" sizes="152x152">
+    <!-- END Icons -->
+    <!-- Stylesheets -->
+
+  
+    <!-- Bootstrap is included in its original form, unaltered -->
+    <link rel="stylesheet" href="~/FreshUI/css/bootstrap.css">
+
+    <!-- Related styles of various icon packs and javascript plugins -->
+    <link rel="stylesheet" href="~/FreshUI/css/plugins.css">
+
+    <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
+    <link rel="stylesheet" href="~/FreshUI/css/main.css">
+
+    <!-- Include a specific file here from css/themes/ folder to alter the default theme of the template -->
+    <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
+    <link rel="stylesheet" href="~/FreshUI/css/themes.css">
+    <!-- END Stylesheets -->
+    <!-- Modernizr (Browser feature detection library) & Respond.js (Enable responsive CSS code on browsers that don't support it, eg IE8) -->
+    <script src="~/FreshUI/js/vendor/modernizr-respond.min.js"></script>
+</head>
+
+
+<body class="header-fixed-top">
+    <div id="modal-terms" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                @*<div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Terms &amp; Conditions</h4>
+                    </div>*@
+                <div class="modal-body">
+                    @if (Session["User"] == null)
+                    {
+                        @Html.Action("Login", "UserAccount")
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="page-container">
+        <header class="navbar navbar-default navbar-fixed-top">
+            <!-- Right Header Navigation -->
+            <!-- END Right Header Navigation -->
+            <!-- Left Header Navigation -->
+            <ul class="nav header-nav pull-right">
+                @{
+                    if (Session["User"] != null)
+                    {
+                        ModelUser user = (ModelUser)Session["User"];
+
+                        <li class="">
+                            <a href="javascript:void(0)" id="s">
+                                @user.UserName <i class="fa fa-user"></i>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="~/UserAccount/Logout" id="s">
+                                Logout <i class="fa fa-sign-out"></i>
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="">
+
+                            <a href="javascript:void(0)" id="s" onclick="$('#modal-terms').modal('show');">
+                                Login <i class="fa fa-sign-in"></i>
+                            </a>
+                        </li>
+                    }
+
+                }
+
+            </ul>
+            <!-- END Left Header Navigation -->
+            <!-- Header Brand -->
+            <!-- END Header Brand -->
+        </header>
+        <div id="fx-container" class="fx-move">
+            @RenderBody()
+        </div>
+    </div>
+
+    <a href="javascript:void(0)" id="to-top"><i class="fa fa-angle-up"></i></a>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/FreshUI/js/vendor/bootstrap.min.js"></script>
+    <script src="~/FreshUI/js/plugins.js"></script>
+    <script src="~/FreshUI/js/main.js"></script>
+
+    @RenderSection("scripts", required: false)
+    <!-- Javascript code only for this page -->
+<script>
+    jQuery(document).ready(function () {
+        $("#tree").fancytree({
+            icons: false, // Display node icons.
+            clickFolderMode: 2,
+            click: function (event, data) {
+                if (data.node.data.href === "#" || data.node.data.href === undefined) {
+                    return;
+                }
+                if (data.node.data.target==="_blank") {
+                    window.open(data.node.data.href, '_blank');
+                    return;
+                }
+                LoadPage(data.node.data.href, this);
+
+            }
+            // 1:activate, 2:expand, 3:activate and expand, 4:activate (dblclick expands)
+        });
+    });
+  
+ 
+
+</script>
+</body>
+</html>

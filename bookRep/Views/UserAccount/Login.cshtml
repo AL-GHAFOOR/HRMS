@@ -1,0 +1,66 @@
+﻿@{
+    Layout = "";
+}
+
+<div id="">
+    <div class="panel panel-info" id="p5" data-panel-color="panel-info" data-panel-fullscreen="false" data-panel-title="false" data-panel-remove="false" data-panel-collapse="false">
+        <div class="panel-heading ui-sortable-handle">
+            <span class="panel-title">Sign in to your account</span>
+            <span class="panel-controls"><a href="#" class="panel-control-loader"></a></span>
+        </div>
+
+        <div class="panel-body ">
+            
+        
+            @model ServiceReportingSystem.Models.ModelUser
+            @using (Html.BeginForm("Login", "UserAccount", FormMethod.Post, new {id = "form", @class = "form-horizontal"}))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                if (ViewBag.Message != null)
+                 {
+                     <div class="alert alert-micro alert-danger light alert-dismissable text-center">
+                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+
+                         <strong>@ViewBag.Message</strong>
+                     </div>
+                 }
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        @Html.TextBoxFor(a => a.UserId, new {id = "id", @class = "form-control", placeholder = "Email address"})
+                        @Html.ValidationMessageFor(a => a.UserId, null, new {@class = "text-danger"})
+
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+
+                        @Html.PasswordFor(a => a.Password, new {id = "id", @class = "form-control", placeholder = "Password"})
+                        @Html.ValidationMessageFor(a => a.Password, null, new {@class = "text-danger"})
+                        <!--
+                        Hidden checkbox. Its checked property will be toggled every time the remember me (#btn-remember) button is clicked (js code at the bottom)
+                        You can add the checked property by default (the button will be enabled automatically)
+                        -->
+                        <input type="checkbox" id="login-remember" name="login-remember" hidden>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4 pull-left">
+
+                        @*<a data-ajax="true" data-ajax-mode="replace" class="btn btn-sm btn-success" data-ajax-update="#content" href="/Std/Create"><i class="fa fa-angle-left"></i> Register</a>*@
+                        <a href="#" onclick="dynamicPageLoad('/Std/Create', '#content');" class="btn btn-sm btn-success"><i class="fa fa-angle-left"></i> Register</a>
+                    </div>
+                    <div class="col-md-4 pull-right">
+                        <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Login</button>
+                    </div>
+                </div>
+                <h5 class="text-left text-danger">
+                    <a href="#" onclick="dynamicPageLoad('/UserAccount/ResetPassowrd', '#content');" >Reset Password <i class="fa fa-question"></i>  </a>
+                </h5>
+            }
+        </div>
+    </div>
+
+</div>
+

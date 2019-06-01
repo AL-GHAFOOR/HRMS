@@ -1,0 +1,489 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="eLibraryDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_Book">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Book_Title" Type="varchar(max)" />
+          <Property Name="EditionId" Type="int" />
+          <Property Name="SchoolId" Type="int" />
+          <Property Name="ProgramId" Type="int" />
+          <Property Name="SubjectArea_CategoryId" Type="varchar" MaxLength="50" />
+          <Property Name="Author" Type="varchar(max)" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="UserId" Type="varchar" MaxLength="50" />
+          <Property Name="UserType" Type="varchar" MaxLength="50" />
+          <Property Name="Published" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentName" Type="varchar(max)" />
+          <Property Name="SortOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_designation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Designation" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_edition">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EditionName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_EligibleStudent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentId" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_faculity_user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email_Address" Type="varchar" MaxLength="150" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="SchoolId" Type="varchar" MaxLength="50" />
+          <Property Name="DesignationId" Type="varchar" MaxLength="50" />
+          <Property Name="DepartmentId" Type="varchar" MaxLength="50" />
+          <Property Name="Pasword" Type="varchar(max)" />
+          <Property Name="ConformPassword" Type="varchar(max)" />
+          <Property Name="Activation" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_Program">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProgramName" Type="varchar(max)" />
+          <Property Name="SortOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_School">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SchoolName" Type="varchar(max)" />
+          <Property Name="SortOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentId" Type="varchar" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="email_address" Type="varchar" MaxLength="50" />
+          <Property Name="ProgramId" Type="int" />
+          <Property Name="ConformPassword" Type="varchar(max)" />
+          <Property Name="Password" Type="varchar(max)" />
+          <Property Name="Activation" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_SubjectArea">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubectArea_Name" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmailAddress" Type="varchar(max)" />
+          <Property Name="UserName" Type="varchar(max)" />
+          <Property Name="Password" Type="varchar(max)" />
+          <Property Name="UserType" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="sp_bookList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_faculity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_user" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="eLibraryDbModelStoreContainer">
+          <EntitySet Name="tbl_Book" EntityType="Self.tbl_Book" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_department" EntityType="Self.tbl_department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_designation" EntityType="Self.tbl_designation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_edition" EntityType="Self.tbl_edition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_EligibleStudent" EntityType="Self.tbl_EligibleStudent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_faculity_user" EntityType="Self.tbl_faculity_user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Program" EntityType="Self.tbl_Program" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_School" EntityType="Self.tbl_School" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Student" EntityType="Self.tbl_Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_SubjectArea" EntityType="Self.tbl_SubjectArea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_user" EntityType="Self.tbl_user" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="eLibraryDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_designation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Designation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_edition">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EditionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_EligibleStudent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_faculity_user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email_Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DesignationId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pasword" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ConformPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SchoolId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Activation" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_Program">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProgramName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SortOrder" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_School">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SchoolName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SortOrder" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_Student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Activation" Type="Boolean" />
+          <Property Name="ProgramId" Type="Int32" />
+          <Property Name="ConformPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_SubjectArea">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubectArea_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="eLibraryDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_designation" EntityType="Self.tbl_designation" />
+          <EntitySet Name="tbl_edition" EntityType="Self.tbl_edition" />
+          <EntitySet Name="tbl_EligibleStudent" EntityType="Self.tbl_EligibleStudent" />
+          <EntitySet Name="tbl_faculity_user" EntityType="Self.tbl_faculity_user" />
+          <EntitySet Name="tbl_Program" EntityType="Self.tbl_Program" />
+          <EntitySet Name="tbl_School" EntityType="Self.tbl_School" />
+          <EntitySet Name="tbl_Student" EntityType="Self.tbl_Student" />
+          <EntitySet Name="tbl_SubjectArea" EntityType="Self.tbl_SubjectArea" />
+          <FunctionImport Name="sp_bookList" ReturnType="Collection(eLibraryDbModel.sp_bookList_Result)" />
+          <FunctionImport Name="sp_user" ReturnType="Collection(eLibraryDbModel.sp_user_Result)" />
+          <FunctionImport Name="sp_faculity" ReturnType="Collection(eLibraryDbModel.sp_faculity_Result)" />
+          <EntitySet Name="tbl_department" EntityType="eLibraryDbModel.tbl_department" />
+          <EntitySet Name="tbl_user" EntityType="eLibraryDbModel.tbl_user" />
+          <EntitySet Name="tbl_Book" EntityType="eLibraryDbModel.tbl_Book" />
+        </EntityContainer>
+        <ComplexType Name="sp_bookList_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Book_Title" Nullable="true" />
+          <Property Type="Int32" Name="EditionId" Nullable="true" />
+          <Property Type="Int32" Name="SchoolId" Nullable="true" />
+          <Property Type="Int32" Name="ProgramId" Nullable="true" />
+          <Property Type="String" Name="SubjectArea_CategoryId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Author" Nullable="true" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <Property Type="String" Name="UserId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserType" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SchoolName" Nullable="true" />
+          <Property Type="String" Name="ProgramName" Nullable="true" />
+          <Property Type="String" Name="EditionName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="101" />
+          <Property Type="Boolean" Name="Published" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_user_Result">
+          <Property Type="Int32" Name="PID" Nullable="false" />
+          <Property Type="String" Name="email_address" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Password" Nullable="true" />
+          <Property Type="Int32" Name="Activation" Nullable="true" />
+          <Property Type="String" Name="UserType" Nullable="false" MaxLength="3" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_faculity_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Email_Address" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DesignationId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Pasword" Nullable="true" />
+          <Property Type="String" Name="ConformPassword" Nullable="true" />
+          <Property Type="String" Name="DName" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="tbl_department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SortOrder" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmailAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_Book">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Book_Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EditionId" Type="Int32" />
+          <Property Name="SchoolId" Type="Int32" />
+          <Property Name="ProgramId" Type="Int32" />
+          <Property Name="SubjectArea_CategoryId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Author" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Published" Type="Boolean" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="eLibraryDbModelStoreContainer" CdmEntityContainer="eLibraryDbEntities">
+          <EntitySetMapping Name="tbl_designation">
+            <EntityTypeMapping TypeName="eLibraryDbModel.tbl_designation">
+              <MappingFragment StoreEntitySet="tbl_designation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_edition">
+            <EntityTypeMapping TypeName="eLibraryDbModel.tbl_edition">
+              <MappingFragment StoreEntitySet="tbl_edition">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EditionName" ColumnName="EditionName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_EligibleStudent">
+            <EntityTypeMapping TypeName="eLibraryDbModel.tbl_EligibleStudent">
+              <MappingFragment StoreEntitySet="tbl_EligibleStudent">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_faculity_user">
+            <EntityTypeMapping TypeName="eLibraryDbModel.tbl_faculity_user">
+              <MappingFragment StoreEntitySet="tbl_faculity_user">
+                <ScalarProperty Name="Activation" ColumnName="Activation" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="ConformPassword" ColumnName="ConformPassword" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email_Address" ColumnName="Email_Address" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+                <ScalarProperty Name="Pasword" ColumnName="Pasword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Program">
+            <EntityTypeMapping TypeName="eLibraryDbModel.tbl_Program">
+              <MappingFragment StoreEntitySet="tbl_Program">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProgramName" ColumnName="ProgramName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_School">
+            <EntityTypeMapping TypeName="eLibraryDbModel.tbl_School">
+              <MappingFragment StoreEntitySet="tbl_School">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Student">
+            <EntityTypeMapping TypeName="eLibraryDbModel.tbl_Student">
+              <MappingFragment StoreEntitySet="tbl_Student">
+                <ScalarProperty Name="ConformPassword" ColumnName="ConformPassword" />
+                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="email_address" ColumnName="email_address" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Activation" ColumnName="Activation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_SubjectArea">
+            <EntityTypeMapping TypeName="eLibraryDbModel.tbl_SubjectArea">
+              <MappingFragment StoreEntitySet="tbl_SubjectArea">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SubectArea_Name" ColumnName="SubectArea_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_bookList" FunctionName="eLibraryDbModel.Store.sp_bookList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="eLibraryDbModel.sp_bookList_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Book_Title" ColumnName="Book_Title" />
+                <ScalarProperty Name="EditionId" ColumnName="EditionId" />
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+                <ScalarProperty Name="SubjectArea_CategoryId" ColumnName="SubjectArea_CategoryId" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+                <ScalarProperty Name="ProgramName" ColumnName="ProgramName" />
+                <ScalarProperty Name="EditionName" ColumnName="EditionName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Published" ColumnName="Published" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_user" FunctionName="eLibraryDbModel.Store.sp_user">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="eLibraryDbModel.sp_user_Result">
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="email_address" ColumnName="email_address" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Activation" ColumnName="Activation" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_faculity" FunctionName="eLibraryDbModel.Store.sp_faculity">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="eLibraryDbModel.sp_faculity_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email_Address" ColumnName="Email_Address" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+                <ScalarProperty Name="Pasword" ColumnName="Pasword" />
+                <ScalarProperty Name="ConformPassword" ColumnName="ConformPassword" />
+                <ScalarProperty Name="DName" ColumnName="DName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tbl_department">
+            <EntityTypeMapping TypeName="eLibraryDbModel.tbl_department">
+              <MappingFragment StoreEntitySet="tbl_department">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_user">
+            <EntityTypeMapping TypeName="eLibraryDbModel.tbl_user">
+              <MappingFragment StoreEntitySet="tbl_user">
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Book">
+            <EntityTypeMapping TypeName="eLibraryDbModel.tbl_Book">
+              <MappingFragment StoreEntitySet="tbl_Book">
+                <ScalarProperty Name="Published" ColumnName="Published" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="SubjectArea_CategoryId" ColumnName="SubjectArea_CategoryId" />
+                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+                <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+                <ScalarProperty Name="EditionId" ColumnName="EditionId" />
+                <ScalarProperty Name="Book_Title" ColumnName="Book_Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

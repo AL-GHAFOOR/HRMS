@@ -1,0 +1,139 @@
+﻿@model IEnumerable<bookRep.Models.ModelBookList>
+
+@{
+    ViewBag.Title = "BookList";
+    Layout = "";
+    int i=0;
+}
+<link href="~/Content/datatables/media/css/dataTables.bootstrap.css" rel="stylesheet" />
+<style>
+    .table td.fit, 
+    .table th.fit {
+        white-space: nowrap;
+        width: 1%;
+    }
+</style>
+<div class="col-md-9">
+    <div class="panel panel-info" id="p5" data-panel-color="panel-info" data-panel-fullscreen="false" data-panel-title="false" data-panel-remove="false" data-panel-collapse="false">
+        <div class="panel-heading ui-sortable-handle">
+            <span class="panel-title">Book List</span>
+
+        </div>
+
+        <div class="panel-body ">
+            <div class="gallery animation-fadeIn">
+                <table class="table table-options" cellspacing="0" width="100%" id="bookList">
+                    <thead>
+                    <tr>
+                        <th >
+                            @Html.DisplayNameFor(model => model.Book_Title)
+                        </th>
+                        <th >
+                            @Html.DisplayNameFor(model => model.EditionName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProgramName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SubectArea_Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Author)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Published)
+                        </th>
+
+                        <th></th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                  
+                    @foreach (var item in Model)
+                    {
+                        i++;
+                        <tr>
+                            <td >
+                                <span><b>@i.</b></span>
+
+                                @Html.DisplayFor(modelItem => item.Book_Title)
+                            </td>
+                            <td >
+                                @Html.DisplayFor(modelItem => item.EditionName)
+                            </td>
+
+                            <td >
+                                @Html.DisplayFor(modelItem => item.ProgramName)
+                            </td>
+                            <td >
+                                @Html.DisplayFor(modelItem => item.SubectArea_Name)
+                            </td>
+                            <td >
+                                @Html.DisplayFor(modelItem => item.Author)
+                            </td>
+                            <td >
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td >
+                                @Html.DisplayFor(modelItem => item.Published)
+                            </td>
+                            <td >
+                                @Ajax.ActionLink("Edit", "Edit", new {id = item.Id},
+                                    new AjaxOptions {UpdateTargetId = "bodyContent"})
+                            </td>
+                        </tr>
+                    }
+
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Book_Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EditionName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProgramName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SubectArea_Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Author)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Published)
+                        </th>
+
+                        <th></th>
+                    </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/datatables/media/js/jquery.dataTables.js"></script>
+<script src="~/Content/datatables/media/js/dataTables.bootstrap.js"></script>
+<script>
+    var table = $('#bookList').DataTable({
+        scrollX: true,
+        scrollCollapse: true,
+        autoWidth: true,
+        "columnDefs": [
+            { "width": "auto", "targets": [0,7] }
+        ]
+        
+    });
+   
+</script>

@@ -1,0 +1,74 @@
+﻿@model bookRep.Models.ModelFaculity
+
+@{
+    Layout = "";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>ModelFaculity</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Email_Address)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Email_Address)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DesignationId)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DesignationId)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Pasword)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Pasword)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ConformPassword)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ConformPassword)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

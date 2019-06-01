@@ -1,0 +1,99 @@
+﻿@model tbl_faculity_user
+
+@{
+    Layout = "";
+}
+<div class="col-md-9">
+    <div class="panel panel-info" id="p5" data-panel-color="panel-info" data-panel-fullscreen="false" data-panel-title="false" data-panel-remove="false" data-panel-collapse="false">
+        <div class="panel-heading ui-sortable-handle">
+            <span class="panel-title">Update Form</span>
+
+        </div>
+
+        <div class="panel-body ">
+            <div class="gallery animation-fadeIn">
+                <div class="register-box">
+
+                    <div class="register-box-body">
+
+                        @using (Ajax.BeginForm("Edit", new AjaxOptions()
+                        {
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "bodyContent"
+                        }))
+                        {
+                            @Html.AntiForgeryToken()
+                            if (ViewBag.Message != null)
+                            {
+                                <div class="alert alert-info light alert-dismissable" id="alert-demo-1" style="display: block;">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <i class="fa fa-info pr10"></i>
+                                    <strong></strong>
+                                    <a href="#" class="alert-link">@ViewBag.Message</a>
+                                </div>
+                            }
+
+                            <div class="form-horizontal">
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(a => a.Pasword)
+
+                                <div class="form-group has-feedback">
+                                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "First Name" } })
+                                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="form-group has-feedback">
+                                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Last Name" } })
+                                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="form-group has-feedback">
+                                    @Html.DropDownListFor(model => model.DesignationId, (IEnumerable<SelectListItem>)ViewBag.Designation, null, new { @class = "form-control", PlaceHolder = "Last Name" })
+
+                                    @Html.ValidationMessageFor(model => model.DesignationId, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="form-group has-feedback">
+                                    @Html.EditorFor(model => model.Email_Address, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Email Address" } })
+                                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                                    @Html.ValidationMessageFor(model => model.Email_Address, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group has-feedback">
+                                    @Html.EditorFor(model => model.Pasword, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Password" } })
+                                    <span class="glyphicon glyphicons-keys form-control-feedback"></span>
+                                    @Html.ValidationMessageFor(model => model.Pasword, "", new { @class = "text-danger" })
+                                </div>
+
+
+
+
+                                <div class="row">
+                                    <button type="submit" class="btn btn-primary btn-block btn-flat">Update</button>
+                                </div>
+                                <hr />
+                                @*<div class="form-group has-feedback text-center">
+                                        <a href="~/Std/StudentLogin">I already have a membership</a>
+                                    </div>*@
+
+                            </div>
+                        }
+
+                    </div>
+                    <!-- /.form-box -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /.register-box -->
+<!-- jQuery 3 -->
+
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+

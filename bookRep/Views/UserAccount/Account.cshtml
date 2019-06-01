@@ -1,0 +1,85 @@
+﻿@using ServiceReportingSystem.Models
+
+@{
+    ViewBag.Title = "Account";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<div class="col-md-9 pn" ng-app="myapp" ng-controller="listcontroll">
+    <div class="panel panel-info" id="p5" data-panel-color="panel-info" data-panel-fullscreen="false" data-panel-title="false" data-panel-remove="false" data-panel-collapse="false">
+        <div class="panel-heading ui-sortable-handle">
+            <span class="panel-title">Dashboard</span>
+
+        </div>
+
+        <div class="panel-body pt5 ">
+            <div class="gallery animation-fadeIn" data-toggle="lightbox-gallery">
+                <div class="row pln prn">
+                    <div class="pull-right">
+                        <input type="search" id="box" ng-model="search" class="form-control input-sm" placeholder="Search" aria-controls="datatable2">
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div id="list">
+                        <div class="col-sm-12 pln prn  animation-fadeInQuick" ng-repeat="x in results | filter:search">
+
+
+                           
+                            <div class="p1" style="padding: 0.5px !important; min-height: 1.5em">
+
+                              
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <td rowspan="5" style="width: 16.66%">
+
+
+                                            <a class="btn btn-primary btn-block" id="pdfGenerate" style="height: 160px;
+                                            width: 130px;background-color: transparent; background-image: url('/Content/assets/img/avatars/cover/{{x.Id}}.png'); background-position: center; background-repeat: no-repeat; background-size: cover;"
+                                               href="~/_ebook/Download/?fileName={{x.Id}}&cat={{x.SubjectArea_CategoryId}}" target="_blank">
+
+
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+
+                                        <td colspan="3"><span><b>{{x.Book_Title}}</b></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Category</td>
+                                        <td>:</td>
+                                        <td>{{x.SubectArea_Name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Author</td>
+                                        <td>:</td>
+                                        <td>{{x.Author}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Edition</td>
+                                        <td>:</td>
+                                        <td>{{x.EditionName}}</td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="~/Content/pdf_viewer/EZView.js"></script>
+
+<script>
+    $('#pdfGenerate').EZView();
+
+</script>

@@ -1,0 +1,116 @@
+﻿
+@model bookRep.Models.ModelStudent
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "";
+}
+<div class="col-md-9">
+<div class="panel panel-info" id="p5" data-panel-color="panel-info" data-panel-fullscreen="false" data-panel-title="false" data-panel-remove="false" data-panel-collapse="false">
+    <div class="panel-heading ui-sortable-handle">
+        <span class="panel-title">Register a new membership</span>
+
+    </div>
+
+    <div class="panel-body ">
+        <div class="gallery animation-fadeIn">
+            <div class="register-box">
+
+                <div class="register-box-body">
+                    <p class="login-box-msg text-center"></p>
+
+                    <div>
+                        @if (ViewBag.Message != null)
+                        {
+                            <div class="alert alert-info light alert-dismissable" id="alert-demo-1" style="display: block;">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <i class="fa fa-info pr10"></i>
+                                <strong></strong>
+                                <a href="#" class="alert-link">@ViewBag.Message</a>
+                            </div>
+                        }
+                    </div>
+                    @using (Ajax.BeginForm("Create", new AjaxOptions()
+                    {
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "content"
+                    }))
+                    {
+
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group has-feedback">
+                                @Html.EditorFor(model => model.StudentId, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Student ID" } })
+                                <span class="glyphicon glyphicon-info-sign form-control-feedback"></span>
+                                @Html.ValidationMessageFor(model => model.StudentId, "", new { @class = "text-danger" })
+
+                            </div>
+
+                            <div class="form-group has-feedback">
+                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "First Name" } })
+                                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+
+                            </div>
+                            <div class="form-group has-feedback">
+                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "Last Name" } })
+                                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+
+                            </div>
+                            <div class="form-group has-feedback">
+                                @Html.DropDownListFor(model => model.ProgramId, (IEnumerable<SelectListItem>)ViewBag.Program, null, new { @class = "form-control", PlaceHolder = "Last Name" })
+
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+
+                            </div>
+                            <div class="form-group has-feedback">
+                                @Html.EditorFor(model => model.email_address, new { htmlAttributes = new { @class = "form-control", PlaceHolder = "email@eastdelta.edu.bd" } })
+                                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                                @Html.ValidationMessageFor(model => model.email_address, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group has-feedback">
+                                @Html.PasswordFor(model => model.Password, new { @class = "form-control", PlaceHolder = "Password" })
+                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group has-feedback">
+                                @Html.PasswordFor(model => model.ConformPassword, new { @class = "form-control", PlaceHolder = "Conform Password" })
+                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                @Html.ValidationMessageFor(model => model.ConformPassword, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group has-feedback">
+                                <div class="editor-field">
+                                    <img src="@Url.Action("GetCaptchaImage","Std")" style="max-width:35%;max-height:10%;height:70px !important" />
+                                </div>
+
+                            </div>
+                            <div class="form-group has-feedback">
+                                <input type="text" name="CaptchaText" class="form-control" PlaceHolder="Please input your Captcha" id="CaptchaText" value="@ViewBag.CaptchaText" />
+                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                            </div>
+
+                            <div class="row">
+                                <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+                            </div>
+                            <hr />
+
+                        </div>
+                    }
+
+                </div>
+                <!-- /.form-box -->
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+@*<script type="text/javascript" src="/Content/jquery/jquery-1.11.1.min.js"></script>*@
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>

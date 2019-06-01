@@ -1,0 +1,42 @@
+﻿@model IEnumerable<bookRep.tbl_edition>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "";
+}
+
+<div class="col-md-9">
+<div class="panel panel-info" id="p5" data-panel-color="panel-info" data-panel-fullscreen="false" data-panel-title="false" data-panel-remove="false" data-panel-collapse="false">
+    <div class="panel-heading ui-sortable-handle">
+        <span class="panel-title">Edition List</span>
+
+    </div>
+
+    <div class="panel-body ">
+        <div class="gallery animation-fadeIn">
+            <table class="table">
+                <tr>
+                    <th>
+                        Edition 
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EditionName)
+                        </td>
+                        <td>
+                            @Ajax.ActionLink("Edit", "Edit", new {id = item.Id},
+                                new AjaxOptions{ UpdateTargetId = "bodyContent"} )
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
